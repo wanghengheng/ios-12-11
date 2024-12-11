@@ -8,12 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showAlert = false
+
     var body: some View {
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("Hello, world!")
+            Button(action: {
+                showAlert = true
+            }) {
+                Text("Show Alert")
+            }
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Hello"),
+                    message: Text("This is an alert message."),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
         }
         .padding()
     }
